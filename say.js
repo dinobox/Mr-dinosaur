@@ -5,8 +5,12 @@ var AipSpeechClient = require("baidu-aip-sdk").speech;
 const conf = require('./conf.js');
 var client = new AipSpeechClient(conf.id, conf.ak, conf.sk);
 
-exports.play = function (text) {
-    client.text2audio(text, { spd: 5, per: 0 }).then(function (result) {
+exports.play = function (text,vol) {
+    var v = 10;
+    if(vol){
+        v = vol;
+    }
+    client.text2audio(text, { spd: 5, per: 0 ,vol: v}).then(function (result) {
         if (result.data) {
             var time = (new Date()).getTime();
             fs.writeFileSync(`${time}.mp3`, result.data);
