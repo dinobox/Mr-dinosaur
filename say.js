@@ -6,7 +6,7 @@ const conf = require('./conf.js');
 var client = new AipSpeechClient(conf.id, conf.ak, conf.sk);
 
 exports.play = function (text,vol) {
-    var v = 10;
+    var v = 15;
     if(vol){
         v = vol;
     }
