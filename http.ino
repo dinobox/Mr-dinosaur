@@ -35,7 +35,7 @@ void setup()
 
   Serial.begin(115200);
   delay(1000);
-//  WiFi.disconnect();
+  //  WiFi.disconnect();
   //WiFi.softAPdisconnect(true);
   WiFi.mode(WIFI_STA);
   WiFi.begin(SSID, PASSWORD);
@@ -89,7 +89,9 @@ void setup()
     mp3->begin(buff, out);
     server.send(200, "text/plain", "this works as well");
     while (mp3->isRunning()) {
-      if (!mp3->loop()) mp3->stop();
+      if (!mp3->loop()) {
+        mp3->stop();
+      };
     }
   });
   server.begin();
